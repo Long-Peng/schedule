@@ -6,6 +6,9 @@
     <el-form-item label="Email">
       <el-input v-model.trim="user.email" />
     </el-form-item>
+    <el-form-item label="password">
+      <el-input v-model.trim="user.password" />
+    </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submit">Update</el-button>
     </el-form-item>
@@ -20,7 +23,8 @@ export default {
       default: () => {
         return {
           name: '',
-          email: ''
+          email: '',
+          password: ''
         }
       }
     }

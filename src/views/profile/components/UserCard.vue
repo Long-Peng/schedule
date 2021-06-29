@@ -19,32 +19,33 @@
 
     <div class="user-bio">
       <div class="user-education user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>Education</span></div>
+        <div class="user-bio-section-header"><svg-icon icon-class="education" /><span>介绍</span></div>
         <div class="user-bio-section-body">
           <div class="text-muted">
-            JS in Computer Science from the University of Technology
+            {{ user.introduction }}
           </div>
         </div>
       </div>
 
       <div class="user-skills user-bio-section">
-        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>Skills</span></div>
+        <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>课目任务进度</span></div>
         <div class="user-bio-section-body">
           <div class="progress-item">
-            <span>Vue</span>
+            <span>数学</span>
             <el-progress :percentage="70" />
           </div>
           <div class="progress-item">
-            <span>JavaScript</span>
-            <el-progress :percentage="18" />
+            <span>英语</span>
+            <el-progress :percentage="18" >
+            </el-progress>
           </div>
           <div class="progress-item">
-            <span>Css</span>
+            <span>政治</span>
             <el-progress :percentage="12" />
           </div>
           <div class="progress-item">
-            <span>ESLint</span>
-            <el-progress :percentage="100" status="success" />
+            <span>专业课</span>
+            <el-progress :percentage="100"/>
           </div>
         </div>
       </div>
@@ -57,6 +58,11 @@ import PanThumb from '@/components/PanThumb'
 
 export default {
   components: { PanThumb },
+  data() {
+    return {
+      precomment: 'JS in Computer Science from the University of Technology'
+    }
+  },
   props: {
     user: {
       type: Object,
@@ -65,7 +71,8 @@ export default {
           name: '',
           email: '',
           avatar: '',
-          role: ''
+          role: '',
+          introduction: ''
         }
       }
     }
@@ -78,7 +85,13 @@ export default {
   margin: 0 auto;
   display: table;
 }
-
+.el-progress-bar__outer{
+  background-color: transparent;
+}
+::v-deep .el-progress-bar__inner{
+  background-color: unset;
+  background-image: linear-gradient(to right,#3587d8 , #53ff54);
+}
 .text-muted {
   color: #777;
 }
