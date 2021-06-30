@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" :class="className" :style="{height:height,width:width}" />
+  <div v-if="analyselist[11].FinishNum" :id="id" :class="className" :style="{height:height,width:width}" />
 </template>
 
 <script>
@@ -9,6 +9,10 @@ import resize from './mixins/resize'
 export default {
   mixins: [resize],
   props: {
+    analyselist: {
+      type: Array,
+      default: () => []
+    },
     className: {
       type: String,
       default: 'chart'
@@ -246,86 +250,67 @@ export default {
             }
           },
           data: [
-            this.week_finish[0].FinishNum,
-            this.week_finish[1].FinishNum,
-            this.week_finish[2].FinishNum,
-            this.week_finish[3].FinishNum,
-            this.week_finish[4].FinishNum,
-            this.week_finish[5].FinishNum,
-            this.week_finish[6].FinishNum,
-            this.week_finish[7].FinishNum,
-            this.week_finish[8].FinishNum,
-            this.week_finish[9].FinishNum,
-            this.week_finish[10].FinishNum,
-            this.week_finish[11].FinishNum
+            this.analyselist[0].FinishNum,
+            this.analyselist[1].FinishNum,
+            this.analyselist[2].FinishNum,
+            this.analyselist[3].FinishNum,
+            this.analyselist[4].FinishNum,
+            this.analyselist[5].FinishNum,
+            this.analyselist[6].FinishNum,
+            this.analyselist[7].FinishNum,
+            this.analyselist[8].FinishNum,
+            this.analyselist[9].FinishNum,
+            this.analyselist[10].FinishNum,
+            this.analyselist[11].FinishNum
           ]
         },
-
-          {
-            name: '未完成任务',
-            type: 'bar',
-            stack: 'total',
-            itemStyle: {
-              normal: {
-                color: 'rgba(0,191,183,1)',
-                barBorderRadius: 0,
-                label: {
-                  show: true,
-                  position: 'top',
-                  formatter(p) {
-                    return p.value > 0 ? p.value : ''
-                  }
+        {
+          name: '未完成任务',
+          type: 'bar',
+          stack: 'total',
+          itemStyle: {
+            normal: {
+              color: 'rgba(0,191,183,1)',
+              barBorderRadius: 0,
+              label: {
+                show: true,
+                position: 'top',
+                formatter(p) {
+                  return p.value > 0 ? p.value : ''
                 }
               }
-            },
-            data: [
-              this.week_finish[0].TaskNum - this.week_finish[0].FinishNum,
-              this.week_finish[1].TaskNum - this.week_finish[1].FinishNum,
-              this.week_finish[2].TaskNum - this.week_finish[2].FinishNum,
-              this.week_finish[3].TaskNum - this.week_finish[3].FinishNum,
-              this.week_finish[4].TaskNum - this.week_finish[4].FinishNum,
-              this.week_finish[5].TaskNum - this.week_finish[5].FinishNum,
-              this.week_finish[6].TaskNum - this.week_finish[6].FinishNum,
-              this.week_finish[7].TaskNum - this.week_finish[7].FinishNum,
-              this.week_finish[8].TaskNum - this.week_finish[8].FinishNum,
-              this.week_finish[9].TaskNum - this.week_finish[9].FinishNum,
-              this.week_finish[10].TaskNum - this.week_finish[10].FinishNum,
-              this.week_finish[11].TaskNum - this.week_finish[11].FinishNum
-            ]
-          }, {
-            name: '完成率',
-            type: 'line',
-            stack: 'total',
-            symbolSize: 10,
-            symbol: 'circle',
-            itemStyle: {
-              normal: {
-                color: 'rgba(252,230,48,1)',
-                barBorderRadius: 0,
-                label: {
-                  show: true,
-                  position: 'top',
-                  formatter(p) {
-                    return p.value > 0 ? p.value : ''
-                  }
-                }
-              }
-            },
-            data: [
-              this.week_finish[0].FinishRate * 100,
-              this.week_finish[1].FinishRate * 100,
-              this.week_finish[2].FinishRate * 100,
-              this.week_finish[3].FinishRate * 100,
-              this.week_finish[4].FinishRate * 100,
-              this.week_finish[5].FinishRate * 100,
-              this.week_finish[6].FinishRate * 100,
-              this.week_finish[7].FinishRate * 100,
-              this.week_finish[8].FinishRate * 100,
-              this.week_finish[9].FinishRate * 100,
-              this.week_finish[10].FinishRate * 100,
-              this.week_finish[11].FinishRate * 100
-            ]
-          }
+            }
+          },
+          data: [
+            this.analyselist[0].TaskNum - this.analyselist[0].FinishNum,
+            this.analyselist[1].TaskNum - this.analyselist[1].FinishNum,
+            this.analyselist[2].TaskNum - this.analyselist[2].FinishNum,
+            this.analyselist[3].TaskNum - this.analyselist[3].FinishNum,
+            this.analyselist[4].TaskNum - this.analyselist[4].FinishNum,
+            this.analyselist[5].TaskNum - this.analyselist[5].FinishNum,
+            this.analyselist[6].TaskNum - this.analyselist[6].FinishNum,
+            this.analyselist[7].TaskNum - this.analyselist[7].FinishNum,
+            this.analyselist[8].TaskNum - this.analyselist[8].FinishNum,
+            this.analyselist[9].TaskNum - this.analyselist[9].FinishNum,
+            this.analyselist[10].TaskNum - this.analyselist[10].FinishNum,
+            this.analyselist[11].TaskNum - this.analyselist[11].FinishNum
+          ]
+        }, {
+          name: '完成率', type: 'line', stack: 'total', symbolSize: 10, symbol: 'circle', itemStyle: { normal: { color: 'rgba(252,230,48,1)', barBorderRadius: 0, label: { show: true, position: 'top', formatter(p) { return p.value > 0 ? p.value : '' } }}},
+          data: [
+            this.analyselist[0].FinishRate * 100,
+            this.analyselist[1].FinishRate * 100,
+            this.analyselist[2].FinishRate * 100,
+            this.analyselist[3].FinishRate * 100,
+            this.analyselist[4].FinishRate * 100,
+            this.analyselist[5].FinishRate * 100,
+            this.analyselist[6].FinishRate * 100,
+            this.analyselist[7].FinishRate * 100,
+            this.analyselist[8].FinishRate * 100,
+            this.analyselist[9].FinishRate * 100,
+            this.analyselist[10].FinishRate * 100,
+            this.analyselist[11].FinishRate * 100
+          ] }
         ]
       })
     }

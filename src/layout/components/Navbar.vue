@@ -95,7 +95,7 @@ export default {
         name: this.name,
         avatar: this.avatar,
         roles: this.roles,
-        email: this.email,
+        email: this.email
       }
     }
   }

@@ -1,14 +1,14 @@
 <template>
   <div class="dashboard-editor-container">
 
-    <panel-group @handleSetLineChartData="handleSetLineChartData" />
+    <panel-group @handleSetLineChartData="handleSetLineChartData" :panelGroup="panelGroup" />
     <!--
     <el-row style="background:#fff;padding:16px 16px 0;margin-bottom:32px;">
       <line-chart :chart-data="lineChartData" />
     </el-row>
     -->
     <div class="chart-container">
-      <chart height="100%" width="60%"/>
+      <chart height="100%" width="60%" :analyselist="analyse"/>
       <todo-list/>
     </div>
 <!--    <el-row :gutter="8">-->
@@ -42,6 +42,8 @@ import PanelGroup from './components/PanelGroup'
 import TodoList from './components/TodoList'
 // import BoxCard from './components/BoxCard'
 import Chart from '@/components/Charts/MixChart'
+import { fetchAnalyse } from '@/api/article'
+import { mapGetters } from 'vuex'
 
 const lineChartData = {
   newVisitis: {
@@ -67,16 +69,45 @@ export default {
   components: {
     PanelGroup,
     Chart,
-    TodoList
+    TodoList,
+    ...mapGetters([
+      'id'
+    ])
   },
   data() {
     return {
+      loadanalyse: true,
+      count_task: 0,
+      count_finish: 0,
+      analyse: [],
+      panelGroup: {},
       lineChartData: lineChartData.newVisitis
     }
+  },
+  created() {
+    this.getAnalyse()
   },
   methods: {
     handleSetLineChartData(type) {
       this.lineChartData = lineChartData[type]
+    },
+    getAnalyse() {
+      this.loadanalyse = true
+      fetchAnalyse(this.id).then(response => {
+        this.count_task = response.data.count_task
+        this.count_finish = response.data.count_finish
+        this.analyse = response.data.analyse
+        this.panelGroup = {
+          total_task: this.count_task,
+          total_finish: this.count_finish,
+          tasknum: response.data.analyse[11].TaskNum,
+          finishnum: response.data.analyse[11].FinishNum
+        }
+
+        setTimeout(() => {
+          this.listLoading = false
+        }, 1.5 * 1000)
+      })
     }
   }
 }

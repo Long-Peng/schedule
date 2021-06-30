@@ -29,23 +29,23 @@
 
       <div class="user-skills user-bio-section">
         <div class="user-bio-section-header"><svg-icon icon-class="skill" /><span>课目任务进度</span></div>
-        <div class="user-bio-section-body">
+        <div class="user-bio-section-body" >
           <div class="progress-item">
             <span>数学</span>
-            <el-progress :percentage="70" />
+            <el-progress :percentage="subjectRate.math" />
           </div>
           <div class="progress-item">
             <span>英语</span>
-            <el-progress :percentage="18" >
+            <el-progress :percentage="subjectRate.english" >
             </el-progress>
           </div>
           <div class="progress-item">
             <span>政治</span>
-            <el-progress :percentage="12" />
+            <el-progress :percentage="subjectRate.political" />
           </div>
           <div class="progress-item">
             <span>专业课</span>
-            <el-progress :percentage="100"/>
+            <el-progress :percentage="subjectRate.special"/>
           </div>
         </div>
       </div>
@@ -55,11 +55,14 @@
 
 <script>
 import PanThumb from '@/components/PanThumb'
+import { fetchSubjectRate } from '@/api/article'
 
 export default {
   components: { PanThumb },
   data() {
     return {
+      listload: true,
+      subjectRate: {},
       precomment: 'JS in Computer Science from the University of Technology'
     }
   },
@@ -72,9 +75,26 @@ export default {
           email: '',
           avatar: '',
           role: '',
-          introduction: ''
+          introduction: '',
+          id: ''
         }
       }
+    }
+  },
+  created() {
+    this.getSubjectRate()
+  },
+  methods: {
+    getSubjectRate() {
+      var that = this
+      this.listload = true
+      fetchSubjectRate(this.id).then(response => {
+        that.subjectRate = response.data
+
+        setTimeout(() => {
+          this.listLoad = false
+        }, 1.5 * 1000)
+      })
     }
   }
 }

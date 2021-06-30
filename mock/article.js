@@ -49,6 +49,158 @@ module.exports = [
     }
   },
   {
+    url: '/vue-element-admin/article/comlist',
+    type: 'post',
+    response: config => {
+      const listQuery = {
+        page: 1,
+        limit: 20,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: '+id'
+      }
+      const { importance, type, title, page = 1, limit = 20, sort } = listQuery
+      let mockList = List.filter(item => {
+        if (importance && item.importance !== +importance) return false
+        if (type && item.type !== type) return false
+        if (title && item.title.indexOf(title) < 0) return false
+        return true
+      })
+
+      if (sort === '-id') {
+        mockList = mockList.reverse()
+      }
+
+      const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
+
+      return {
+        code: 20000,
+        data: {
+          total: mockList.length,
+          items: pageList
+        }
+      }
+    }
+  },
+  {
+    url: '/vue-element-admin/article/subrate',
+    type: 'post',
+    response: config => {
+      const rateList = {
+        math: 20,
+        english: 35,
+        political: 70,
+        special: 100
+      }
+      return {
+        code: 20000,
+        data: rateList
+      }
+    }
+  },
+  {
+    url: '/vue-element-admin/article/analyse',
+    type: 'post',
+    response: config => {
+      const task = 2000
+      const finish = 1000
+      const analyse = [
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 1917,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 1776,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 1776,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        },
+        {
+          UserID: null,
+          CreateTime: null,
+          TaskNum: 709,
+          FinishNum: 327,
+          FinishRate: 0.5
+        }]
+      return {
+        code: 20000,
+        data: {
+          count_task: task,
+          count_finish: finish,
+          analyse: analyse
+        }
+      }
+    }
+  },
+  {
     url: '/vue-element-admin/article/detail',
     type: 'get',
     response: config => {

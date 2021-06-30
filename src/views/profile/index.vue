@@ -39,6 +39,7 @@ export default {
   data() {
     return {
       user: {},
+      subjectRate: {},
       activeTab: 'timeline'
     }
   },
@@ -47,7 +48,8 @@ export default {
       'name',
       'avatar',
       'roles',
-      'introduction'
+      'introduction',
+      'id'
     ])
   },
   created() {
@@ -61,7 +63,8 @@ export default {
         email: 'admin@test.com',
         avatar: this.avatar,
         password: 123456,
-        introduction: this.introduction
+        introduction: this.introduction,
+        id: this.id
       }
     }
   }

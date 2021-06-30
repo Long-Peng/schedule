@@ -10,12 +10,26 @@ export function fetchList(query) {
 
 export function fetchcomList(id) {
   return request({
-    url: '/vue-element-admin/article/l',
-    method: 'get',
+    url: '/vue-element-admin/article/comlist',
+    method: 'post',
     params: { id }
   })
 }
 
+export function fetchSubjectRate(id) {
+  return request({
+    url: '/vue-element-admin/article/subrate',
+    method: 'post',
+    params: { id }
+  })
+}
+export function fetchAnalyse(id) {
+  return request({
+    url: '/vue-element-admin/article/analyse',
+    method: 'post',
+    params: { id }
+  })
+}
 export function fetchArticle(id) {
   return request({
     url: '/vue-element-admin/article/detail',

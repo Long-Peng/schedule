@@ -9,7 +9,7 @@
           <div class="card-panel-text">
             总体任务数
           </div>
-          <count-to :start-val="0" :end-val=count_task :duration="2600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelGroup.total_task :duration="2600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -22,7 +22,7 @@
           <div class="card-panel-text">
             今日任务数
           </div>
-          <count-to :start-val="0" :end-val=analyze.TaskNum :duration="3000" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelGroup.tasknum :duration="3000" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -35,7 +35,7 @@
           <div class="card-panel-text">
             总体完成数
           </div>
-          <count-to :start-val="0" :end-val=count_finish :duration="3200" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelGroup.total_finish :duration="3200" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -48,7 +48,7 @@
           <div class="card-panel-text">
             今日完成数
           </div>
-          <count-to :start-val="0" :end-val=analyze.FinishNum :duration="3600" class="card-panel-num" />
+          <count-to :start-val="0" :end-val=panelGroup.finishnum :duration="3600" class="card-panel-num" />
         </div>
       </div>
     </el-col>
@@ -62,22 +62,28 @@ export default {
   components: {
     CountTo
   },
-  data() {
-    return {
-      count_task: 10244,
-      count_finish: 81212,
-      analyze: {
-        UserID: null,
-        CreateTime: null,
-        TaskNum: 9280,
-        FinishNum: 8000,
-        FinishRate: 0.2
+  props: {
+    panelGroup: {
+      type: Object,
+      default: () => {
+        return {
+          total_task: 0,
+          total_finish: 0,
+          tasknum: 0,
+          finishnum: 0
+        }
       }
     }
   },
-  methods: {
-    handleSetLineChartData(type) {
-      this.$emit('handleSetLineChartData', type)
+  data() {
+    return {
+      analyze: {
+        UserID: null,
+        CreateTime: null,
+        TaskNum: 0,
+        FinishNum: 0,
+        FinishRate: 0
+      }
     }
   }
 }
