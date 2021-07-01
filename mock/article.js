@@ -15,7 +15,7 @@ for (let i = 0; i < count; i++) {
     Theme: '@title(5, 10)',
     Priority: '@integer(1, 3)',
     'Subject|1': ['Math', 'English', 'Politics', 'Subject'],
-    'Finish|1': ['已完成', '未完成']
+    Finish: '@boolean'
   }))
 }
 
@@ -24,7 +24,15 @@ module.exports = [
     url: '/vue-element-admin/article/list',
     type: 'get',
     response: config => {
-      const { importance, type, title, page = 1, limit = 20, sort } = config.query
+      const listQuery = {
+        page: 1,
+        limit: 20,
+        importance: undefined,
+        title: undefined,
+        type: undefined,
+        sort: '+id'
+      }
+      const { importance, type, title, page = 1, limit = 20, sort } = listQuery
 
       let mockList = List.filter(item => {
         if (importance && item.importance !== +importance) return false
@@ -36,9 +44,7 @@ module.exports = [
       if (sort === '-id') {
         mockList = mockList.reverse()
       }
-
       const pageList = mockList.filter((item, index) => index < limit * page && index >= limit * (page - 1))
-
       return {
         code: 20000,
         data: {
@@ -215,7 +221,6 @@ module.exports = [
       }
     }
   },
-
   {
     url: '/vue-element-admin/article/pv',
     type: 'get',
@@ -247,6 +252,16 @@ module.exports = [
 
   {
     url: '/vue-element-admin/article/update',
+    type: 'post',
+    response: _ => {
+      return {
+        code: 20000,
+        data: 'success'
+      }
+    }
+  },
+  {
+    url: '/vue-element-admin/article/delete',
     type: 'post',
     response: _ => {
       return {

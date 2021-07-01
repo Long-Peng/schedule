@@ -105,7 +105,7 @@ export default {
         }
 
         setTimeout(() => {
-          this.listLoading = false
+          this.loadanalyse = false
         }, 1.5 * 1000)
       })
     }

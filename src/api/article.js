@@ -1,10 +1,10 @@
 import request from '@/utils/request'
 
-export function fetchList(query) {
+export function fetchList(token) {
   return request({
     url: '/vue-element-admin/article/list',
     method: 'get',
-    params: query
+    param: { token }
   })
 }
 
@@ -28,6 +28,13 @@ export function fetchAnalyse(id) {
     url: '/vue-element-admin/article/analyse',
     method: 'post',
     params: { id }
+  })
+}
+export function fetchDaily(token) {
+  return request({
+    url: '/vue-element-admin/article/daily',
+    method: 'get',
+    params: { token }
   })
 }
 export function fetchArticle(id) {
@@ -59,5 +66,13 @@ export function updateArticle(data) {
     url: '/vue-element-admin/article/update',
     method: 'post',
     data
+  })
+}
+
+export function deleteList(taskID) {
+  return request({
+    url: '/vue-element-admin/article/delete',
+    method: 'post',
+    param: taskID
   })
 }
