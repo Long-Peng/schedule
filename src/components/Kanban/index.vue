@@ -9,8 +9,8 @@
       class="board-column-content"
       :set-data="setData"
     >
-      <div v-for="element in list" :key="element.id" class="board-item">
-        {{ element.name }} {{ element.id }}
+      <div v-for="element in list" :key="element.content" class="board-item" @click="open()">
+        {{ element.content }}
       </div>
     </draggable>
   </div>
@@ -18,7 +18,7 @@
 
 <script>
 import draggable from 'vuedraggable'
-
+import { addTask } from '@/api/task-recommend'
 export default {
   name: 'DragKanbanDemo',
   components: {
@@ -42,11 +42,54 @@ export default {
       }
     }
   },
+  data() {
+    return {
+      temp: {
+        TaskID: '',
+        Priority: '',
+        CreatTime: new Date(),
+        Ddl: new Date(),
+        Theme: '',
+        Subject: '',
+        Finish: '未完成',
+        Remind: '否'
+      }
+    }
+  },
   methods: {
     setData(dataTransfer) {
       // to avoid Firefox bug
       // Detail see : https://github.com/RubaXa/Sortable/issues/1012
       dataTransfer.setData('Text', '')
+    },
+    open() {
+      this.$confirm('是否将此任务添加到任务列表?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '添加成功'
+        })
+        this.add()
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '已取消'
+        })
+      })
+    },
+    add() {
+      addTask(this.temp).then(() => {
+        this.dialogFormVisible = false
+        this.$notify({
+          title: 'Success',
+          message: 'Add Successfully',
+          type: 'success',
+          duration: 2000
+        })
+      })
     }
   }
 }
