@@ -24,6 +24,10 @@
 
       </el-row>
     </div>
+    <el-dialog :title="更改头像" :visible.sync="dialogFormVisible">
+      <div class="" ref="imForm" style="width: 400px; margin-left: 50px;">
+      </div>
+    </el-dialog>
   </div>
 </template>
 
@@ -40,16 +44,16 @@ export default {
     return {
       user: {},
       subjectRate: {},
+      dialogFormVisible: false,
       activeTab: 'timeline'
     }
   },
   computed: {
     ...mapGetters([
-      'name',
-      'avatar',
-      'roles',
-      'introduction',
-      'id'
+      'username',
+      'userimage',
+      'userID',
+      'email'
     ])
   },
   created() {
@@ -58,14 +62,17 @@ export default {
   methods: {
     getUser() {
       this.user = {
-        name: this.name,
-        role: this.roles.join(' | '),
-        email: 'admin@test.com',
-        avatar: this.avatar,
+        username: this.username,
+        role: 'admin',
+        email: this.email,
+        userimage: this.userimage,
         password: 123456,
-        introduction: this.introduction,
-        id: this.id
+        introduction: 'I am introduction',
+        userID: this.userID
       }
+    },
+    handleUpdateIm() {
+
     }
   }
 }

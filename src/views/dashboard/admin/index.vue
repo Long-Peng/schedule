@@ -71,7 +71,7 @@ export default {
     Chart,
     TodoList,
     ...mapGetters([
-      'id'
+      'userID'
     ])
   },
   data() {
@@ -93,15 +93,16 @@ export default {
     },
     getAnalyse() {
       this.loadanalyse = true
-      fetchAnalyse(this.id).then(response => {
-        this.count_task = response.data.count_task
-        this.count_finish = response.data.count_finish
+      fetchAnalyse(this.userID).then(response => {
+        this.count_task = response.data.countTask
+        this.count_finish = response.data.countFinish
+        this.userId = response.data.userId
         this.analyse = response.data.analyse
         this.panelGroup = {
           total_task: this.count_task,
           total_finish: this.count_finish,
-          tasknum: response.data.analyse[11].TaskNum,
-          finishnum: response.data.analyse[11].FinishNum
+          tasknum: response.data.analyse[11].analysisTaskNum,
+          finishnum: response.data.analyse[11].analysisFinishRate
         }
 
         setTimeout(() => {

@@ -90,8 +90,8 @@ export default {
         ddl: new Date(),
         priority: 1,
         remind: 1,
-        isFinished: false,
-        creatTime: new Date()
+        finished: false,
+        createAT: new Date()
       },
       filters,
       // todos: JSON.parse(window.localStorage.getItem(STORAGE_KEY)) || defalutList

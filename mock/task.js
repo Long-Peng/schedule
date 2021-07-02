@@ -6,13 +6,13 @@ const count = 100
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     taskId: '@increment',
-    creatTime: +Mock.Random.date('T'),
+    createAt: +Mock.Random.date('T'),
     ddl: +Mock.Random.date('T'),
     'remind|1': '@integer(0, 5)',
     theme: '@sentence(3, 5)',
     priority: '@integer(1, 3)',
     'subject|1': ['Math', 'English', 'Politics', 'Subject'],
-    'isFinished|1': ['已完成', '未完成']
+    finished: '@boolean'
   }))
 }
 

@@ -20,7 +20,7 @@
 
       <el-dropdown class="avatar-container right-menu-item hover-effect" trigger="click">
         <div class="avatar-wrapper">
-          <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar">
+          <img :src="userimage+'?imageView2/1/w/80/h/80'" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
 
@@ -73,10 +73,8 @@ export default {
     ...mapGetters([
       'name',
       'sidebar',
-      'avatar',
-      'device',
-      'roles',
-      'avatar'
+      'userimage',
+      'device'
     ])
   },
   created() {
@@ -92,8 +90,8 @@ export default {
     },
     getUser() {
       this.user = {
-        name: this.name,
-        avatar: this.avatar,
+        username: this.username,
+        image: this.image,
         roles: this.roles,
         email: this.email
       }

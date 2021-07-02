@@ -9,8 +9,8 @@ const count = 100
 for (let i = 0; i < count; i++) {
   List.push(Mock.mock({
     TaskID: '@increament',
-    CreateTime: +Mock.Random.date('T'),
-    Ddl: +Mock.Random.date('T'),
+    CreateTime: +Mock.Random.date('yyyy-MM-dd'),
+    Ddl: +Mock.Random.date('yyyy-MM-dd'),
     'Remind|1': ['否', '每天', '每两天', '每三天', '每四天'],
     Theme: '@title(5, 10)',
     Priority: '@integer(1, 3)',
@@ -113,94 +113,83 @@ module.exports = [
       const finish = 1000
       const analyse = [
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysfisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 1917,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 1917,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 1776,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 1776,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 1776,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 1776,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         },
         {
-          UserID: null,
-          CreateTime: null,
-          TaskNum: 709,
-          FinishNum: 327,
-          FinishRate: 0.5
+          analysisDay: null,
+          analysisTaskNum: 709,
+          analysisFinishedNum: 327,
+          analysisFinishRate: 0.5
         }]
       return {
         code: 20000,
         data: {
-          count_task: task,
-          count_finish: finish,
+          countTask: task,
+          countFinish: finish,
+          userId: '1',
           analyse: analyse
         }
       }

@@ -6,12 +6,12 @@
 
     <div class="user-profile">
       <div class="box-center">
-        <pan-thumb :image="user.avatar" :height="'100px'" :width="'100px'" :hoverable="false">
-          <div>更改头像</div>
+        <pan-thumb :image="user.userimage" :height="'100px'" :width="'100px'" :hoverable="false">
+          <div @click="handleUpdate()">更改头像</div>
         </pan-thumb>
       </div>
       <div class="box-center">
-        <div class="user-name text-center">{{ user.name }}</div>
+        <div class="user-name text-center">{{ user.username }}</div>
         <div class="user-role text-center text-muted">{{ user.role | uppercaseFirst }}</div>
       </div>
     </div>
@@ -70,12 +70,13 @@ export default {
       type: Object,
       default: () => {
         return {
-          name: '',
+          username: '',
           email: '',
-          avatar: '',
+          userimage: '',
+          password: '',
           role: '',
           introduction: '',
-          id: ''
+          userID: ''
         }
       }
     }
@@ -94,6 +95,9 @@ export default {
           this.listLoad = false
         }, 1.5 * 1000)
       })
+    },
+    handleUpdate() {
+      this.$emit('handleUpdateIm')
     }
   }
 }

@@ -11,17 +11,23 @@ const tokens = {
 const users = {
   'admin-token': {
     roles: ['admin'],
-    introduction: 'I am a super administrator',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Super Admin',
-    id: '1'
+    userId: '1',
+    email: 'admin@123.com',
+    password: '123',
+    nickname: 'Super Admin',
+    sex: 'man',
+    age: '18',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
   },
   'editor-token': {
     roles: ['editor'],
-    introduction: 'I am an editor',
-    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor',
-    id: '2'
+    userId: '2',
+    email: 'editor@123.com',
+    password: '123',
+    nickname: 'Super editor',
+    sex: 'man',
+    age: '18',
+    avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif'
   }
 }
 

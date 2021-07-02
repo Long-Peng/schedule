@@ -4,11 +4,14 @@ import router, { resetRouter } from '@/router'
 
 const state = {
   token: getToken(),
-  id: '',
-  name: '',
-  avatar: '',
-  introduction: '',
-  roles: []
+  UserID: '',
+  Email: '',
+  Password: '',
+  Username: '',
+  Sex: '',
+  Age: '',
+  Image: '',
+  roles: ''
 }
 
 const mutations = {
@@ -19,16 +22,28 @@ const mutations = {
     state.introduction = introduction
   },
   SET_NAME: (state, name) => {
-    state.name = name
+    state.Username = name
   },
   SET_AVATAR: (state, avatar) => {
-    state.avatar = avatar
+    state.Image = avatar
   },
   SET_ROLES: (state, roles) => {
     state.roles = roles
   },
   SER_ID: (state, id) => {
-    state.id = id
+    state.UserID = id
+  },
+  SET_EMAIL: (state, email) => {
+    state.Email = email
+  },
+  SET_AGE: (state, age) => {
+    state.Age = age
+  },
+  SET_PASSWORD: (state, password) => {
+    state.Password = password
+  },
+  SET_SEX: (state, sex) => {
+    state.Sex = sex
   }
 }
 
@@ -57,20 +72,32 @@ const actions = {
         if (!data) {
           reject('Verification failed, please Login again.')
         }
-
-        const { roles, name, avatar, introduction, id } = data
+        const userid = data.userId
+        const email = data.email
+        const username = data.nickname
+        const sex = data.sex
+        const age = data.age
+        const userimage = data.avatar
 
         // roles must be a non-empty array
-        if (!roles || roles.length <= 0) {
-          reject('getInfo: roles must be a non-null array!')
+        const unroles = ['admin']
+        const userinfo = {
+          roles: unroles,
+          nickname: username,
+          unemail: email,
+          id: userid,
+          usersex: sex,
+          userage: age,
+          useravatar: userimage
         }
-
-        commit('SET_ROLES', roles)
-        commit('SET_NAME', name)
-        commit('SET_AVATAR', avatar)
-        commit('SET_INTRODUCTION', introduction)
-        commit('SER_ID', id)
-        resolve(data)
+        commit('SET_ROLES', unroles)
+        commit('SET_NAME', username)
+        commit('SET_AVATAR', userimage)
+        commit('SET_EMAIL', email)
+        commit('SER_ID', userid)
+        commit('SET_SEX', sex)
+        commit('SET_AGE', age)
+        resolve(userinfo)
       }).catch(error => {
         reject(error)
       })

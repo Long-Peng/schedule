@@ -252,18 +252,18 @@ export default {
             }
           },
           data: [
-            this.analyselist[0].FinishNum,
-            this.analyselist[1].FinishNum,
-            this.analyselist[2].FinishNum,
-            this.analyselist[3].FinishNum,
-            this.analyselist[4].FinishNum,
-            this.analyselist[5].FinishNum,
-            this.analyselist[6].FinishNum,
-            this.analyselist[7].FinishNum,
-            this.analyselist[8].FinishNum,
-            this.analyselist[9].FinishNum,
-            this.analyselist[10].FinishNum,
-            this.analyselist[11].FinishNum
+            this.analyselist[0].analysisFinishedNum,
+            this.analyselist[1].analysisFinishedNum,
+            this.analyselist[2].analysisFinishedNum,
+            this.analyselist[3].analysisFinishedNum,
+            this.analyselist[4].analysisFinishedNum,
+            this.analyselist[5].analysisFinishedNum,
+            this.analyselist[6].analysisFinishedNum,
+            this.analyselist[7].analysisFinishedNum,
+            this.analyselist[8].analysisFinishedNum,
+            this.analyselist[9].analysisFinishedNum,
+            this.analyselist[10].analysisFinishedNum,
+            this.analyselist[11].analysisFinishedNum
           ]
         },
         {
@@ -284,34 +284,34 @@ export default {
             }
           },
           data: [
-            this.analyselist[0].TaskNum - this.analyselist[0].FinishNum,
-            this.analyselist[1].TaskNum - this.analyselist[1].FinishNum,
-            this.analyselist[2].TaskNum - this.analyselist[2].FinishNum,
-            this.analyselist[3].TaskNum - this.analyselist[3].FinishNum,
-            this.analyselist[4].TaskNum - this.analyselist[4].FinishNum,
-            this.analyselist[5].TaskNum - this.analyselist[5].FinishNum,
-            this.analyselist[6].TaskNum - this.analyselist[6].FinishNum,
-            this.analyselist[7].TaskNum - this.analyselist[7].FinishNum,
-            this.analyselist[8].TaskNum - this.analyselist[8].FinishNum,
-            this.analyselist[9].TaskNum - this.analyselist[9].FinishNum,
-            this.analyselist[10].TaskNum - this.analyselist[10].FinishNum,
-            this.analyselist[11].TaskNum - this.analyselist[11].FinishNum
+            this.analyselist[0].analysisTaskNum - this.analyselist[0].analysisFinishedNum,
+            this.analyselist[1].analysisTaskNum - this.analyselist[1].analysisFinishedNum,
+            this.analyselist[2].analysisTaskNum - this.analyselist[2].analysisFinishedNum,
+            this.analyselist[3].analysisTaskNum - this.analyselist[3].analysisFinishedNum,
+            this.analyselist[4].analysisTaskNum - this.analyselist[4].analysisFinishedNum,
+            this.analyselist[5].analysisTaskNum - this.analyselist[5].analysisFinishedNum,
+            this.analyselist[6].analysisTaskNum - this.analyselist[6].analysisFinishedNum,
+            this.analyselist[7].analysisTaskNum - this.analyselist[7].analysisFinishedNum,
+            this.analyselist[8].analysisTaskNum - this.analyselist[8].analysisFinishedNum,
+            this.analyselist[9].analysisTaskNum - this.analyselist[9].analysisFinishedNum,
+            this.analyselist[10].analysisTaskNum - this.analyselist[10].analysisFinishedNum,
+            this.analyselist[11].analysisTaskNum - this.analyselist[11].analysisFinishedNum
           ]
         }, {
           name: '完成率', type: 'line', stack: 'total', symbolSize: 10, symbol: 'circle', itemStyle: { normal: { color: 'rgba(252,230,48,1)', barBorderRadius: 0, label: { show: true, position: 'top', formatter(p) { return p.value > 0 ? p.value : '' } }}},
           data: [
-            this.analyselist[0].FinishRate * 100,
-            this.analyselist[1].FinishRate * 100,
-            this.analyselist[2].FinishRate * 100,
-            this.analyselist[3].FinishRate * 100,
-            this.analyselist[4].FinishRate * 100,
-            this.analyselist[5].FinishRate * 100,
-            this.analyselist[6].FinishRate * 100,
-            this.analyselist[7].FinishRate * 100,
-            this.analyselist[8].FinishRate * 100,
-            this.analyselist[9].FinishRate * 100,
-            this.analyselist[10].FinishRate * 100,
-            this.analyselist[11].FinishRate * 100
+            this.analyselist[0].analysisFinishRate * 100,
+            this.analyselist[1].analysisFinishRate * 100,
+            this.analyselist[2].analysisFinishRate * 100,
+            this.analyselist[3].analysisFinishRate * 100,
+            this.analyselist[4].analysisFinishRate * 100,
+            this.analyselist[5].analysisFinishRate * 100,
+            this.analyselist[6].analysisFinishRate * 100,
+            this.analyselist[7].analysisFinishRate * 100,
+            this.analyselist[8].analysisFinishRate * 100,
+            this.analyselist[9].analysisFinishRate * 100,
+            this.analyselist[10].analysisFinishRate * 100,
+            this.analyselist[11].analysisFinishRate * 100
           ] }
         ]
       })

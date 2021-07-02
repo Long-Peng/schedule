@@ -37,9 +37,9 @@
           <span>{{ row.taskId }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="制定日期" prop="creatTime" width="150px" align="center">
+      <el-table-column label="制定日期" prop="createAt" width="150px" align="center">
         <template slot-scope="{row}">
-          <span>{{ row.creatTime | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.createAt | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
         </template>
       </el-table-column>
       <el-table-column label="预定完成日期" prop="ddl" width="150px" align="center">
@@ -63,10 +63,10 @@
           <span>{{ row.remind }}</span>
         </template>
       </el-table-column>
-      <el-table-column label="状态" prop="isFinished" class-name="status-col" width="100">
+      <el-table-column label="状态" prop="finished" class-name="status-col" width="100">
         <template slot-scope="{row}">
-          <el-tag :type="row.isFinished | statusFilter">
-            {{ row.isFinished }}
+          <el-tag :type="row.finished | statusFilter">
+            {{ row.finished }}
           </el-tag>
         </template>
       </el-table-column>
@@ -75,7 +75,7 @@
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
-          <el-button v-if="row.isFinished!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
+          <el-button v-if="row.finished!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
             删除
           </el-button>
         </template>
@@ -91,8 +91,8 @@
             <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
           </el-select>
         </el-form-item>
-        <el-form-item label="制定时间" prop="creatTime">
-          <el-date-picker v-model="temp.creatTime" type="datetime" placeholder="Please pick a date" />
+        <el-form-item label="制定时间" prop="createAt">
+          <el-date-picker v-model="temp.createAt" type="datetime" placeholder="Please pick a date" />
         </el-form-item>
         <el-form-item label="完成时间" prop="ddl">
           <el-date-picker v-model="temp.ddl" type="datetime" placeholder="Please pick a date" />
@@ -106,7 +106,7 @@
           </el-select>
         </el-form-item>
         <el-form-item label="状态">
-          <el-select v-model="temp.isFinished" class="filter-item" placeholder="Please select">
+          <el-select v-model="temp.finished" class="filter-item" placeholder="Please select">
             <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
           </el-select>
         </el-form-item>
@@ -193,11 +193,11 @@ export default {
       temp: {
         taskId: undefined,
         priority: 1,
-        creatTime: new Date(),
+        createAt: new Date(),
         ddl: new Date(),
         theme: '',
         subject: '',
-        isFinished: '未完成',
+        finished: '未完成',
         remind: 0
       },
       dialogFormVisible: false,
@@ -224,6 +224,13 @@ export default {
       fetchList(this.listQuery).then(response => {
         this.list = response.data.items
         this.total = response.data.total
+        for (let i = 0; i < this.list.length; i++) {
+          if (this.list[i].finished) {
+            this.list[i].finished = '已完成'
+          } else {
+            this.list[i].finished = '未完成'
+          }
+        }
         // Just to simulate the time of the request
         setTimeout(() => {
           this.listLoading = false
@@ -252,10 +259,10 @@ export default {
       this.temp = {
         taskId: undefined,
         priority: 1,
-        creatTime: new Date(),
+        createAt: new Date(),
         ddl: new Date(),
         theme: '',
-        isFinished: '未完成',
+        finished: '未完成',
         subject: '',
         remind: 0
       }
@@ -288,7 +295,7 @@ export default {
     },
     handleUpdate(row) {
       this.temp = Object.assign({}, row) // copy obj
-      this.temp.creatTime = new Date(this.temp.creatTime)
+      this.temp.createAt = new Date(this.temp.createAt)
       this.temp.ddl = new Date(this.temp.ddl)
       this.dialogStatus = 'update'
       this.dialogFormVisible = true
@@ -300,7 +307,7 @@ export default {
       this.$refs['dataForm'].validate((valid) => {
         if (valid) {
           const tempData = Object.assign({}, this.temp)
-          tempData.creatTime = +new Date(tempData.creatTime) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
+          tempData.createAt = +new Date(tempData.createAt) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
           tempData.ddl = +new Date(tempData.ddl)
           updateTask(tempData).then(() => {
             const index = this.list.findIndex(v => v.taskId === this.temp.taskId)
@@ -330,7 +337,7 @@ export default {
       this.downloadLoading = true
       import('@/vendor/Export2Excel').then(excel => {
         const tHeader = ['任务编号', '创建时间', '预定完成时间', '任务内容', '学科', '优先级', '提醒频率', '状态']
-        const filterVal = ['taskId', 'creatTime', 'ddl', 'theme', 'subject', 'priority', 'remind', 'isFinished']
+        const filterVal = ['taskId', 'createAt', 'ddl', 'theme', 'subject', 'priority', 'remind', 'isFinished']
         const data = this.formatJson(filterVal)
         excel.export_json_to_excel({
           header: tHeader,
@@ -342,7 +349,7 @@ export default {
     },
     formatJson(filterVal) {
       return this.list.map(v => filterVal.map(j => {
-        if (j === 'creatTime' || j === 'ddl') {
+        if (j === 'createAt' || j === 'ddl') {
           return parseTime(v[j])
         } else {
           return v[j]
