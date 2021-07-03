@@ -1,15 +1,17 @@
 <template>
-  <div class="components-container board">
-    <Kanban :key="1" :list="math" :group="group" class="kanban m1" header-text="数学" />
-    <Kanban :key="2" :list="english" :group="group" class="kanban m2" header-text="英语" />
-    <Kanban :key="3" :list="politics" :group="group" class="kanban m3" header-text="政治" />
-    <Kanban :key="4" :list="subject" :group="group" class="kanban m4" header-text="专业课" />
-    <el-col :span="1">
-      <img :src="FightGif2" width="300" height="300" alt="">
-    </el-col>
-    <el-col :span="8">
-      <img :src="FightGif" width="313" height="300" alt="">
-    </el-col>
+  <div id="logo">
+    <div class="components-container board">
+      <Kanban :key="1" :list="math" :group="group" class="kanban m1" header-text="数学" />
+      <Kanban :key="2" :list="english" :group="group" class="kanban m2" header-text="英语" />
+      <Kanban :key="3" :list="politics" :group="group" class="kanban m3" header-text="政治" />
+      <Kanban :key="4" :list="subject" :group="group" class="kanban m4" header-text="专业课" />
+      <el-col :span="1">
+        <img :src="FightGif2" width="300" height="300" alt="">
+      </el-col>
+      <el-col :span="8">
+        <img :src="FightGif" width="313" height="300" alt="">
+      </el-col>
+    </div>
   </div>
 </template>
 <script>
@@ -106,4 +108,12 @@ export default {
     }
   }
 }
+#logo{
+  background: url("../../assets/bg4.jpeg");
+  background-size: 100% 100%;
+  position: fixed;
+  height: 150%;
+  width: 100%
+}
+
 </style>

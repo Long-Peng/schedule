@@ -378,3 +378,11 @@ export default {
   }
 }
 </script>
+<style>
+.app-container{
+  background: url("../../assets/bg3.jpeg");
+  background-size: 100% 100%;
+  height: 80%;
+  width: 100%
+}
+</style>
