@@ -29,3 +29,10 @@ export function deleteTask(id) {
     id
   })
 }
+export function modifyStatus(id) {
+  return request({
+    url: '/vue-element-admin/article/modify',
+    method: 'post',
+    id
+  })
+}

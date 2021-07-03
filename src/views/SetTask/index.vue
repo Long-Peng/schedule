@@ -75,6 +75,9 @@
           <el-button type="primary" size="mini" @click="handleUpdate(row)">
             编辑
           </el-button>
+          <el-button size="mini" type="success" @click="handleModifyStatus(row)">
+            修改状态
+          </el-button>
           <el-button v-if="row.finished!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
             删除
           </el-button>
@@ -137,7 +140,7 @@
 </template>
 
 <script>
-import { fetchList, createTask, updateTask, deleteTask } from '@/api/task'
+import { fetchList, createTask, updateTask, deleteTask, modifyStatus } from '@/api/task'
 import waves from '@/directive/waves' // waves directive
 import { parseTime } from '@/utils'
 import Pagination from '@/components/Pagination' // secondary package based on el-pagination
@@ -240,6 +243,18 @@ export default {
     handleFilter() {
       this.listQuery.page = 1
       this.getList()
+    },
+    handleModifyStatus(row) {
+      modifyStatus(this.list)
+      if (row.finished === '已完成') {
+        row.finished = '未完成'
+      } else {
+        row.finished = '已完成'
+      }
+      this.$message({
+        message: '修改成功',
+        type: 'success'
+      })
     },
     sortChange(data) {
       const { prop, order } = data
